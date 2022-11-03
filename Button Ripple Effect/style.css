@@ -1,0 +1,57 @@
+body{
+    margin: 0;
+    /* first bring the button to the center using display flex */
+    display: flex;
+    /* make it be at the center */
+    justify-content: center;
+    /* make it 100vh of the entire page */
+    height: 100vh;
+    /* bring the entire item to the center */
+    align-items: center;
+    background-color: aliceblue;
+    /* change the font of the button */
+    font-family: sans-serif;
+}
+
+.btn{
+    background-color: pink;
+    /* add some padding both on the left and right */
+    padding: 20px 40px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+    text-decoration:none ;
+    color: black;
+    position: relative;
+    overflow: hidden;
+}
+.btn span{ 
+    /* set the position to relative to enable the button show when hover. set the z-index to 1. it automatically brings it forward  */
+    position: relative;
+    z-index: 1;
+
+}
+.btn::before{
+    content: "";
+    background-color: orangered;
+    /* we need to place  the position absolute. b4 then, the parent need to be placed on relative, that is :btn */
+    position: absolute;
+    /* you won't be able to see the effect, until the next 2 steps */
+    /* width: 20px;
+    height: 20px; */
+    width: 0;
+    height: 0;
+    /*  to bring the small image to the center, do the the next 2 steps and to make it come to center exactly, you the 3rd step */
+    /* left: 50%; */ left: var(--xPos);
+    /* top: 50%; */ top: var(--yPos);
+    /* we need to add a variable above and change the variable in javascript */
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    /* it becomes like a circle. we want when we hover, the size of the circle increases by doing below */
+    /* in order to see the ripple effect, you use the transition */
+    transition: width
+    0.5s, height 0.5s;
+}
+.btn:hover::before{
+    width: 300px;
+    height: 300px;
+}
